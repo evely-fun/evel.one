@@ -32,8 +32,7 @@ function initialTheme(): Theme {
 function initialLang(): Lang {
   const stored = readStored(LANG_KEY)
   if (stored === 'ru' || stored === 'en') return stored
-  const nav = typeof navigator === 'object' ? navigator.languages ?? [navigator.language] : []
-  return nav.some((code) => /^(ru|uk|be|kk)\b/i.test(code ?? '')) ? 'ru' : 'en'
+  return 'ru'
 }
 
 export function useTheme() {

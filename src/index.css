@@ -1,13 +1,13 @@
+@import '@fontsource-variable/montserrat';
 @import '@fontsource-variable/source-serif-4';
-@import '@fontsource-variable/jetbrains-mono';
 @import 'tailwindcss';
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
+  --font-display: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Source Serif 4 Variable", ui-serif, Georgia, serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
-  --font-sans: "Source Serif 4 Variable", ui-serif, Georgia, serif;
+  --font-sans: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
 
   --color-paper: var(--paper);
   --color-panel: var(--panel);
@@ -74,9 +74,10 @@
 
   h1, h2, h3, h4 {
     margin: 0;
-    font-weight: 600;
-    line-height: 1.18;
-    letter-spacing: -0.012em;
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
     text-wrap: balance;
   }
 
@@ -117,33 +118,44 @@
 
 @layer utilities {
   .mono {
-    font-family: var(--font-mono);
+    font-family: var(--font-display);
     font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
   }
 
   .label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
+    font-family: var(--font-display);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.085em;
     text-transform: uppercase;
     font-variant-numeric: tabular-nums;
   }
 
+  .ui {
+    font-family: var(--font-display);
+  }
+
   .measure {
-    max-width: 40rem;
+    max-width: 46rem;
   }
 
   .page {
     width: 100%;
-    max-width: 1280px;
+    max-width: 1760px;
     margin-inline: auto;
-    padding-inline: 22px;
+    padding-inline: 20px;
   }
 
   @media (min-width: 768px) {
     .page {
-      padding-inline: 48px;
+      padding-inline: 40px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .page {
+      padding-inline: 56px;
     }
   }
 

@@ -63,9 +63,17 @@ for (const view of matrix) {
       const overflow = await page.evaluate(() => {
         const docWidth = document.documentElement.clientWidth
         const wide = []
+        const inScroller = (el) => {
+          for (let n = el.parentElement; n; n = n.parentElement) {
+            const ox = getComputedStyle(n).overflowX
+            if (ox === 'auto' || ox === 'scroll') return true
+          }
+          return false
+        }
         for (const el of document.querySelectorAll('body *')) {
           const r = el.getBoundingClientRect()
           if (r.width === 0) continue
+          if (inScroller(el)) continue
           if (r.right > docWidth + 1 || r.left < -1) {
             wide.push(`${el.tagName.toLowerCase()}.${String(el.className).slice(0, 60)} [${Math.round(r.left)}..${Math.round(r.right)}]`)
           }

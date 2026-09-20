@@ -8,31 +8,34 @@ export function Pricing({ t }: { t: Strings }) {
     <section id="pricing">
       <SectionHead n={t.pricing.n} id="pricing" title={t.pricing.title} lead={t.pricing.lead} />
 
-      <div className="mt-10 max-w-4xl">
-        <div className="label hidden border-b border-rule-strong pb-2 text-ink-3 sm:grid sm:grid-cols-[minmax(0,1fr)_6rem_6rem_7rem] sm:gap-x-6">
+      <div className="mt-12">
+        <div className="label hidden border-b border-rule-strong pb-2.5 text-ink-3 sm:grid sm:grid-cols-[minmax(0,1.1fr)_7rem_7rem_8rem_minmax(0,2.2fr)] sm:gap-x-8">
           <span>{t.pricing.head.name}</span>
           <span>{t.pricing.head.price}</span>
           <span>{t.pricing.head.days}</span>
           <span>{t.pricing.head.revisions}</span>
+          <span />
         </div>
 
         <RevealList as="ul">
           {t.pricing.rows.map((row) => (
             <RevealItem key={row.name} as="li" className="border-b border-rule py-5">
-              <div className="sm:grid sm:grid-cols-[minmax(0,1fr)_6rem_6rem_7rem] sm:items-baseline sm:gap-x-6">
-                <h3 className="text-[17.5px] font-semibold">
+              <div className="sm:grid sm:grid-cols-[minmax(0,1.1fr)_7rem_7rem_8rem_minmax(0,2.2fr)] sm:items-baseline sm:gap-x-8">
+                <h3 className="text-[clamp(1.125rem,1.5vw,1.4375rem)]">
                   {row.name}
                   {'mark' in row && row.mark && <span className="text-accent">*</span>}
                 </h3>
 
                 <div className="mt-2 flex items-baseline gap-4 sm:mt-0 sm:contents">
-                  <span className="mono text-[19px] font-medium sm:text-[17px]">{row.price}</span>
-                  <span className="mono text-[14px] text-ink-2">{row.days}</span>
-                  <span className="mono text-[14px] text-ink-2">{row.revisions}</span>
+                  <span className="mono text-[clamp(1.25rem,1.7vw,1.625rem)] font-extrabold">{row.price}</span>
+                  <span className="ui text-[15px] font-semibold text-ink-2">{row.days}</span>
+                  <span className="ui text-[15px] font-semibold text-ink-2">{row.revisions}</span>
                 </div>
-              </div>
 
-              <p className="measure mt-3 text-[15.5px] leading-relaxed text-ink-2">{row.body}</p>
+                <p className="mt-3 text-[clamp(0.9375rem,1.05vw,1.0625rem)] leading-relaxed text-ink-2 sm:mt-0">
+                  {row.body}
+                </p>
+              </div>
             </RevealItem>
           ))}
         </RevealList>
@@ -49,7 +52,7 @@ export function Pricing({ t }: { t: Strings }) {
           href={contact.url}
           target="_blank"
           rel="noreferrer noopener"
-          className="link-doc mt-7 inline-flex items-center gap-2 text-[16px] font-medium"
+          className="ui link-doc mt-8 inline-flex items-center gap-2 text-[16px] font-bold"
         >
           {t.ui.write}
           <Glyph name="arrowUpRight" size={15} />
@@ -64,23 +67,26 @@ export function Longterm({ t }: { t: Strings }) {
     <section id="longterm">
       <SectionHead n={t.longterm.n} id="longterm" title={t.longterm.title} lead={t.longterm.lead} />
 
-      <div className="mt-10 max-w-4xl">
-        <div className="label hidden border-b border-rule-strong pb-2 text-ink-3 sm:grid sm:grid-cols-[minmax(0,1fr)_11rem] sm:gap-x-6">
+      <div className="mt-12">
+        <div className="label hidden border-b border-rule-strong pb-2.5 text-ink-3 sm:grid sm:grid-cols-[minmax(0,1.1fr)_13rem_minmax(0,2.2fr)] sm:gap-x-8">
           <span>{t.longterm.head.name}</span>
           <span>{t.longterm.head.price}</span>
+          <span />
         </div>
 
         <RevealList as="ul">
           {t.longterm.rows.map((row) => (
             <RevealItem key={row.name} as="li" className="border-b border-rule py-5">
-              <div className="sm:grid sm:grid-cols-[minmax(0,1fr)_11rem] sm:items-baseline sm:gap-x-6">
-                <h3 className="text-[17.5px] font-semibold">{row.name}</h3>
+              <div className="sm:grid sm:grid-cols-[minmax(0,1.1fr)_13rem_minmax(0,2.2fr)] sm:items-baseline sm:gap-x-8">
+                <h3 className="text-[clamp(1.125rem,1.5vw,1.4375rem)]">{row.name}</h3>
                 <p className="mt-2 flex items-baseline gap-2 sm:mt-0">
-                  <span className="mono text-[19px] font-medium sm:text-[17px]">{row.price}</span>
-                  <span className="text-[14px] text-ink-3">{row.unit}</span>
+                  <span className="mono text-[clamp(1.25rem,1.7vw,1.625rem)] font-extrabold">{row.price}</span>
+                  <span className="ui text-[14px] font-semibold text-ink-3">{row.unit}</span>
+                </p>
+                <p className="mt-3 text-[clamp(0.9375rem,1.05vw,1.0625rem)] leading-relaxed text-ink-2 sm:mt-0">
+                  {row.body}
                 </p>
               </div>
-              <p className="measure mt-3 text-[15.5px] leading-relaxed text-ink-2">{row.body}</p>
             </RevealItem>
           ))}
         </RevealList>

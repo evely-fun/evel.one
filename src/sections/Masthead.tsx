@@ -13,32 +13,43 @@ export function Masthead({ t }: { t: Strings }) {
       >
         <p className="label text-ink-3">{t.masthead.author}</p>
 
-        <h1 className="mt-5 max-w-[22ch] text-[clamp(2.125rem,6vw,4rem)] leading-[1.08]">
+        <h1 className="mt-5 max-w-[19ch] text-[clamp(2.375rem,6.4vw,5.25rem)] leading-[1.02]">
           {t.masthead.title}
         </h1>
 
-        <p className="measure mt-7 text-[clamp(1.0625rem,1.7vw,1.1875rem)] text-ink-2">{t.masthead.abstract}</p>
+        <p className="measure mt-8 text-[clamp(1.0625rem,1.5vw,1.3125rem)] text-ink-2">{t.masthead.abstract}</p>
 
-        <dl className="mt-10 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-5 border-t border-rule pt-6 sm:grid-cols-4">
-          {t.masthead.meta.map((row) => (
-            <div key={row.key}>
-              <dt className="label text-ink-3">{row.key}</dt>
-              <dd className="mt-1.5 text-[15px] text-ink">{row.value}</dd>
-            </div>
-          ))}
-        </dl>
       </motion.div>
     </section>
   )
 }
 
+export function MastheadMeta({ t }: { t: Strings }) {
+  return (
+    <motion.dl
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2, ease: ease.doc }}
+      className="mt-14 grid grid-cols-2 gap-x-10 gap-y-7 border-t border-rule pt-7 sm:grid-cols-4 xl:mt-16"
+    >
+      {t.masthead.meta.map((row) => (
+        <div key={row.key}>
+          <dt className="label text-ink-3">{row.key}</dt>
+          <dd className="ui mt-2.5 text-[clamp(1rem,1.25vw,1.3125rem)] font-bold text-ink">{row.value}</dd>
+        </div>
+      ))}
+    </motion.dl>
+  )
+}
+
 export function Contents({ t }: { t: Strings }) {
   return (
-    <section className="mt-16 sm:mt-20">
+    <section className="mt-16 sm:mt-20 xl:mt-0">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.12, ease: ease.doc }}
+        className="xl:pb-2"
       >
         <h2 className="label border-t border-rule-strong pt-5 text-ink-3">{t.contents.title}</h2>
 
@@ -47,15 +58,15 @@ export function Contents({ t }: { t: Strings }) {
             <li key={item.id} className="border-b border-rule">
               <a
                 href={`#${item.id}`}
-                className="group flex items-baseline gap-4 py-4 transition-colors sm:gap-6"
+                className="group flex items-baseline gap-4 py-4 transition-colors sm:gap-6 xl:py-[18px]"
               >
                 <span className="label w-7 shrink-0 text-ink-3 transition-colors group-hover:text-accent">
                   {item.n}
                 </span>
-                <span className="flex-1 text-[17px] font-medium transition-colors group-hover:text-accent sm:text-[19px]">
+                <span className="ui flex-1 text-[17px] font-bold transition-colors group-hover:text-accent sm:text-[21px]">
                   {item.label}
                 </span>
-                <span className="hidden flex-1 text-[15px] text-ink-3 sm:block">{item.hint}</span>
+                <span className="hidden flex-1 text-[15px] text-ink-3 sm:block xl:hidden 2xl:block">{item.hint}</span>
                 <Glyph
                   name="arrowRight"
                   size={16}

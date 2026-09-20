@@ -19,7 +19,7 @@ export function Header({ t, theme, onTheme, onLang, active }: HeaderProps) {
   const progress = useSpring(scrollYProgress, { stiffness: 280, damping: 40, restDelta: 0.001 })
 
   const iconButton =
-    'inline-flex h-9 w-9 items-center justify-center rounded-md text-ink-3 transition-colors hover:bg-panel hover:text-ink'
+    'inline-flex h-9 w-9 items-center justify-center rounded-lg text-ink-3 transition-colors hover:bg-panel hover:text-ink sm:h-10 sm:w-10'
 
   return (
     <header className="sticky top-0 z-50 border-b border-rule bg-paper">
@@ -28,16 +28,30 @@ export function Header({ t, theme, onTheme, onLang, active }: HeaderProps) {
         style={{ scaleX: progress }}
       />
 
-      <div className="page flex h-14 items-center justify-between gap-4">
-        <a href="#top" className="mono text-[13px] font-medium tracking-tight">
+      <div className="page flex h-16 items-center justify-between gap-6 lg:h-18">
+        <a href="#top" className="ui text-[17px] font-extrabold tracking-[-0.03em]">
           evel<span className="text-ink-3">.one</span>
         </a>
+
+        <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex">
+          {t.contents.items.slice(0, 5).map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className={`ui rounded-lg px-3 py-2 text-[14px] font-semibold transition-colors hover:bg-panel ${
+                active === item.id ? 'text-accent' : 'text-ink-2 hover:text-ink'
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
 
         <div className="flex items-center gap-1">
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
-            className="label inline-flex h-9 items-center gap-2 rounded-md px-2 text-ink-3 transition-colors hover:bg-panel hover:text-ink lg:hidden"
+            className="label inline-flex h-9 items-center gap-2 rounded-lg px-2 text-ink-3 transition-colors hover:bg-panel hover:text-ink sm:h-10 lg:hidden"
             aria-expanded={open}
             aria-label={open ? t.ui.close : t.ui.menu}
           >
@@ -58,10 +72,11 @@ export function Header({ t, theme, onTheme, onLang, active }: HeaderProps) {
             rel="noreferrer noopener"
             whileTap={{ scale: 0.97 }}
             transition={spring.press}
-            className="ml-1.5 inline-flex h-9 items-center gap-2 rounded-md bg-ink px-3 text-[14px] font-medium text-paper sm:ml-2 sm:px-3.5"
+            className="ui ml-1.5 inline-flex h-9 items-center gap-2 rounded-lg bg-ink px-3 text-[14.5px] font-bold text-paper sm:ml-2 sm:h-10 sm:px-4"
+            aria-label={t.ui.write}
           >
             <Glyph name="telegram" size={15} />
-            {t.ui.write}
+            <span className="hidden min-[400px]:inline">{t.ui.write}</span>
           </motion.a>
         </div>
       </div>
@@ -81,7 +96,7 @@ export function Header({ t, theme, onTheme, onLang, active }: HeaderProps) {
                   <a
                     href={`#${item.id}`}
                     onClick={() => setOpen(false)}
-                    className={`flex items-baseline gap-3 py-2.5 ${
+                    className={`ui flex items-baseline gap-3 py-2.5 font-semibold ${
                       active === item.id ? 'text-accent' : 'text-ink'
                     }`}
                   >

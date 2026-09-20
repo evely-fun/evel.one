@@ -8,47 +8,51 @@ export function Projects({ t }: { t: Strings }) {
     <section id="projects">
       <SectionHead n={t.projects.n} id="projects" title={t.projects.title} lead={t.projects.lead} />
 
-      <div className="mt-12 flex flex-col gap-14 sm:gap-16">
+      <div className="mt-14 flex flex-col gap-16 sm:gap-20">
         {t.projects.items.map((project) => (
-          <article key={project.n} className="border-t border-rule pt-7">
-            <Reveal>
-              <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <article
+            key={project.n}
+            className="grid gap-8 border-t border-rule pt-8 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] xl:gap-16"
+          >
+            <Reveal className="xl:sticky xl:top-28 xl:self-start xl:pt-2">
+              <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
                 <span className="label text-accent">{project.n}</span>
-                <h3 className="text-[clamp(1.1875rem,2.2vw,1.5rem)] font-semibold">{project.name}</h3>
-                <span className="label text-ink-3">{project.kind}</span>
+                <h3 className="text-[clamp(1.3125rem,2.2vw,1.875rem)]">{project.name}</h3>
               </div>
 
-              <p className="measure mt-4 text-[16px] leading-relaxed text-ink-2">{project.body}</p>
+              <p className="label mt-3 text-ink-3">{project.kind}</p>
 
-              <ul className="mt-5 flex flex-wrap gap-1.5">
+              <p className="measure mt-5 text-[clamp(1rem,1.15vw,1.125rem)] leading-relaxed text-ink-2">
+                {project.body}
+              </p>
+
+              <ul className="mt-6 flex flex-wrap gap-2">
                 {project.stack.map((item) => (
                   <li key={item}>
                     <Tag>{item}</Tag>
                   </li>
                 ))}
               </ul>
-            </Reveal>
 
-            {project.shots.length > 0 && (
-              <RevealList className="mt-8 grid max-w-3xl gap-6 sm:grid-cols-2 sm:gap-8">
-                {project.shots.map((shot) => (
-                  <Shot key={shot.src} src={shot.src} caption={shot.caption} />
-                ))}
-              </RevealList>
-            )}
-
-            {'link' in project && project.link && discordInvite && (
-              <Reveal>
+              {'link' in project && project.link && discordInvite && (
                 <a
                   href={discordInvite}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="link-doc mt-6 inline-flex items-center gap-2 text-[16px] font-medium"
+                  className="ui link-doc mt-7 inline-flex items-center gap-2 text-[16px] font-bold"
                 >
                   {project.link}
                   <Glyph name="arrowUpRight" size={15} />
                 </a>
-              </Reveal>
+              )}
+            </Reveal>
+
+            {project.shots.length > 0 && (
+              <RevealList className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:pb-0">
+                {project.shots.map((shot) => (
+                  <Shot key={shot.src} src={shot.src} caption={shot.caption} />
+                ))}
+              </RevealList>
             )}
           </article>
         ))}

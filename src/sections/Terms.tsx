@@ -6,12 +6,12 @@ export function Terms({ t }: { t: Strings }) {
     <section id="terms">
       <SectionHead n={t.terms.n} id="terms" title={t.terms.title} lead={t.terms.lead} />
 
-      <RevealList as="ol" className="mt-10 max-w-4xl">
+      <RevealList as="ol" className="mt-12 grid gap-x-12 sm:grid-cols-2 xl:gap-x-20">
         {t.terms.items.map((item, index) => (
           <RevealItem
             key={item.title}
             as="li"
-            className="grid grid-cols-[2.25rem_minmax(0,1fr)] gap-x-2 border-t border-rule py-5 sm:grid-cols-[3rem_16rem_minmax(0,1fr)] sm:gap-x-6"
+            className="border-t border-rule py-6"
           >
             <span className="label pt-1 text-ink-3">{String(index + 1).padStart(2, '0')}</span>
             <h3 className="text-[16.5px] font-semibold">{item.title}</h3>

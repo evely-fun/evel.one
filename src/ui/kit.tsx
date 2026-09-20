@@ -59,14 +59,14 @@ export function SectionHead({ n, id, title, lead }: { n: string; id: string; tit
     <Reveal as="header" className="border-t border-rule-strong pt-6">
       <div className="flex items-baseline gap-4">
         <span className="label text-accent">{n}</span>
-        <h2 className="text-[clamp(1.5rem,3vw,2.125rem)]">
+        <h2 className="text-[clamp(1.75rem,3.2vw,2.75rem)]">
           <a href={`#${id}`} className="group inline-flex items-baseline gap-2">
             {title}
             <span className="label text-ink-3 opacity-0 transition-opacity group-hover:opacity-100">#</span>
           </a>
         </h2>
       </div>
-      <p className="measure mt-4 text-ink-2">{lead}</p>
+      <p className="measure mt-4 text-[clamp(1rem,1.25vw,1.1875rem)] text-ink-2">{lead}</p>
     </Reveal>
   )
 }
@@ -78,8 +78,8 @@ export function Shot({ src, caption }: { src: string; caption: string }) {
   const shift = useTransform(scrollYProgress, [0, 1], ['-3%', '3%'])
 
   return (
-    <motion.figure className="m-0" variants={rise}>
-      <div ref={ref} className="overflow-hidden rounded-[14px] border border-rule bg-panel">
+    <motion.figure className="m-0 w-[74%] shrink-0 snap-start sm:w-auto sm:shrink" variants={rise}>
+      <div ref={ref} className="overflow-hidden rounded-[10px]">
         <div
           className="relative aspect-[390/844] w-full overflow-hidden"
           style={{
@@ -97,7 +97,7 @@ export function Shot({ src, caption }: { src: string; caption: string }) {
           />
         </div>
       </div>
-      <figcaption className="mt-3 text-[14px] leading-snug text-ink-3">{caption}</figcaption>
+      <figcaption className="ui mt-3 text-[13.5px] leading-snug text-ink-3">{caption}</figcaption>
     </motion.figure>
   )
 }
