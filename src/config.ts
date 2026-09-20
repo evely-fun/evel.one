@@ -6,7 +6,7 @@ export const contact = {
 }
 
 // Payment rails shown in section 06. Leave empty to hide the list.
-export const payments: string[] = []
+export const payments: string[] = ['Bitcoin', 'TON']
 
 export const site = {
   origin: 'https://evel.one',

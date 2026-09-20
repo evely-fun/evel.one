@@ -35,7 +35,7 @@ export const strings = {
       title: 'Содержание',
       items: [
         { id: 'services', n: '01', label: 'Что я делаю', hint: 'Telegram, Discord, сайты' },
-        { id: 'projects', n: '02', label: 'Проекты', hint: 'Пять, можно открыть и потыкать' },
+        { id: 'projects', n: '02', label: 'Проекты', hint: 'Шесть, можно открыть и потыкать' },
         { id: 'security', n: '03', label: 'Безопасность', hint: 'Что именно закрыто в коде' },
         { id: 'pricing', n: '04', label: 'Цены', hint: 'Полный прайс по всем форматам' },
         { id: 'longterm', n: '05', label: 'Долгое сотрудничество', hint: 'Договор и что он значит' },
@@ -126,6 +126,18 @@ export const strings = {
         },
         {
           n: '2.5',
+          name: 'Kali',
+          kind: 'Сайт продукта',
+          url: 'https://kali-bep.pages.dev/',
+          link: 'Открыть сайт',
+          body: 'Лендинг десктопного приложения: экран загрузки, каталог скриптов, документация и FAQ. Тёмная тема, скролл-анимации на всю страницу, окно приложения показано прямо на первом экране. Next.js, деплой на Cloudflare Pages.',
+          stack: ['Next.js', 'React', 'TypeScript', 'Cloudflare Pages'],
+          shots: [
+            { src: '/shots/kali-site.jpg', caption: 'Первый экран: заголовок, кнопки и окно приложения', ratio: '16/10' },
+          ],
+        },
+        {
+          n: '2.6',
           name: 'Discord-сервер под ключ',
           kind: 'Discord',
           url: 'https://discord.gg/jZCU7KjgH7',
@@ -269,6 +281,7 @@ export const strings = {
       title: 'Условия',
       lead: 'Скучная часть, которую лучше прочитать до, а не после.',
       paymentsTitle: 'Чем можно платить',
+      paymentsNote: 'Если криптой неудобно, договоримся в личке и пропишем способ в договоре.',
       items: [
         {
           title: '50% перед стартом',
@@ -355,7 +368,7 @@ export const strings = {
       title: 'Contents',
       items: [
         { id: 'services', n: '01', label: 'What I do', hint: 'Telegram, Discord, websites' },
-        { id: 'projects', n: '02', label: 'Projects', hint: 'Five, open and try them' },
+        { id: 'projects', n: '02', label: 'Projects', hint: 'Six, open and try them' },
         { id: 'security', n: '03', label: 'Security', hint: 'What is actually closed off' },
         { id: 'pricing', n: '04', label: 'Pricing', hint: 'The full rate card' },
         { id: 'longterm', n: '05', label: 'Long-term work', hint: 'The contract and what it means' },
@@ -446,6 +459,18 @@ export const strings = {
         },
         {
           n: '2.5',
+          name: 'Kali',
+          kind: 'Product website',
+          url: 'https://kali-bep.pages.dev/',
+          link: 'Open the site',
+          body: 'A landing page for a desktop app: download screen, script catalogue, documentation and FAQ. Dark theme, scroll-driven animation across the whole page, the app window shown on the first screen. Next.js, deployed to Cloudflare Pages.',
+          stack: ['Next.js', 'React', 'TypeScript', 'Cloudflare Pages'],
+          shots: [
+            { src: '/shots/kali-site.jpg', caption: 'First screen: headline, buttons and the app window', ratio: '16/10' },
+          ],
+        },
+        {
+          n: '2.6',
           name: 'Discord server, set up end to end',
           kind: 'Discord',
           url: 'https://discord.gg/jZCU7KjgH7',
@@ -589,6 +614,7 @@ export const strings = {
       title: 'Terms',
       lead: 'The boring part, better read before than after.',
       paymentsTitle: 'How you can pay',
+      paymentsNote: 'If crypto does not work for you, we agree on another way privately and write it into the contract.',
       items: [
         {
           title: '50% before I start',

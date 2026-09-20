@@ -71,20 +71,36 @@ export function SectionHead({ n, id, title, lead }: { n: string; id: string; tit
   )
 }
 
-export function Shot({ src, caption }: { src: string; caption: string }) {
+export function Shot({
+  src,
+  caption,
+  ratio = '390/844',
+  solo = false,
+}: {
+  src: string
+  caption: string
+  ratio?: string
+  solo?: boolean
+}) {
   const ref = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const shift = useTransform(scrollYProgress, [0, 1], ['-3%', '3%'])
+  const tall = ratio === '390/844'
+  const fade = 'linear-gradient(to bottom, #000 84%, transparent 100%)'
 
   return (
-    <motion.figure className="m-0 w-[74%] shrink-0 snap-start sm:w-auto sm:shrink" variants={rise}>
+    <motion.figure
+      className={`m-0 ${solo ? 'w-full' : 'w-[74%] shrink-0 snap-start sm:w-auto sm:shrink'}`}
+      variants={rise}
+    >
       <div ref={ref} className="overflow-hidden rounded-[10px]">
         <div
-          className="relative aspect-[390/844] w-full overflow-hidden"
+          className="relative w-full overflow-hidden"
           style={{
-            maskImage: 'linear-gradient(to bottom, #000 84%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, #000 84%, transparent 100%)',
+            aspectRatio: ratio.replace('/', ' / '),
+            maskImage: tall ? fade : undefined,
+            WebkitMaskImage: tall ? fade : undefined,
           }}
         >
           <motion.img
@@ -92,8 +108,8 @@ export function Shot({ src, caption }: { src: string; caption: string }) {
             alt={caption}
             loading="lazy"
             decoding="async"
-            style={reduced ? undefined : { y: shift }}
-            className="absolute inset-x-0 top-0 h-[106%] w-full object-cover object-top"
+            style={reduced || !tall ? undefined : { y: shift }}
+            className={`absolute inset-x-0 top-0 w-full object-cover object-top ${tall ? 'h-[106%]' : 'h-full'}`}
           />
         </div>
       </div>

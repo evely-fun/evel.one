@@ -36,6 +36,7 @@ export function Terms({ t }: { t: Strings }) {
               </li>
             ))}
           </ul>
+          <p className="measure mt-4 text-[15px] text-ink-3">{t.terms.paymentsNote}</p>
         </Reveal>
       )}
     </section>

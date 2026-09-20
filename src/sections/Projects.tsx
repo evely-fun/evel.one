@@ -52,12 +52,22 @@ export function Projects({ t }: { t: Strings }) {
 
             {project.shots.length > 0 && (
               <RevealList
-                className={`flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:grid sm:gap-8 sm:overflow-visible sm:pb-0 ${
-                  wide ? 'sm:grid-cols-2 xl:grid-cols-3' : 'sm:grid-cols-2'
-                }`}
+                className={
+                  project.shots.length === 1
+                    ? 'block'
+                    : `flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:grid sm:gap-8 sm:overflow-visible sm:pb-0 ${
+                        wide ? 'sm:grid-cols-2 xl:grid-cols-3' : 'sm:grid-cols-2'
+                      }`
+                }
               >
                 {project.shots.map((shot) => (
-                  <Shot key={shot.src} src={shot.src} caption={shot.caption} />
+                  <Shot
+                    key={shot.src}
+                    src={shot.src}
+                    caption={shot.caption}
+                    ratio={'ratio' in shot ? shot.ratio : undefined}
+                    solo={project.shots.length === 1}
+                  />
                 ))}
               </RevealList>
             )}
