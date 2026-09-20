@@ -1,6 +1,6 @@
 export const contact = {
-  telegram: 'evely',
-  url: 'https://t.me/evely',
+  telegram: 'eveluxy',
+  url: 'https://t.me/eveluxy',
 }
 
 export const site = {
