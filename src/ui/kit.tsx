@@ -57,8 +57,8 @@ export function RevealItem({
 export function SectionHead({ n, id, title, lead }: { n: string; id: string; title: string; lead: string }) {
   return (
     <Reveal as="header" className="border-t border-rule-strong pt-6">
-      <div className="flex items-baseline gap-4">
-        <span className="label text-accent">{n}</span>
+      <div className="flex items-baseline gap-4 sm:gap-5">
+        <span className="mono text-[clamp(1.125rem,1.9vw,1.75rem)] font-extrabold text-accent">{n}</span>
         <h2 className="text-[clamp(1.75rem,3.2vw,2.75rem)]">
           <a href={`#${id}`} className="group inline-flex items-baseline gap-2">
             {title}

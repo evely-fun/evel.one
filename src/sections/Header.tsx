@@ -67,7 +67,7 @@ export function Header({ t, theme, onTheme, onLang, active }: HeaderProps) {
           </button>
 
           <motion.a
-            href={contact.url}
+            href={contact.telegramUrl}
             target="_blank"
             rel="noreferrer noopener"
             whileTap={{ scale: 0.97 }}

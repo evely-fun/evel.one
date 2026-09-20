@@ -1,5 +1,6 @@
+import { payments } from '../config'
 import type { Strings } from '../i18n/strings'
-import { RevealItem, RevealList, SectionHead } from '../ui/kit'
+import { Reveal, RevealItem, RevealList, SectionHead } from '../ui/kit'
 
 export function Terms({ t }: { t: Strings }) {
   return (
@@ -21,6 +22,22 @@ export function Terms({ t }: { t: Strings }) {
           </RevealItem>
         ))}
       </RevealList>
+
+      {payments.length > 0 && (
+        <Reveal className="mt-10">
+          <h3 className="label text-ink-3">{t.terms.paymentsTitle}</h3>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {payments.map((method) => (
+              <li
+                key={method}
+                className="ui rounded-full bg-panel px-3.5 py-1.5 text-[14px] font-semibold text-ink-2"
+              >
+                {method}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      )}
     </section>
   )
 }

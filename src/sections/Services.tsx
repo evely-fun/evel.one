@@ -6,7 +6,7 @@ export function Services({ t }: { t: Strings }) {
     <section id="services">
       <SectionHead n={t.services.n} id="services" title={t.services.title} lead={t.services.lead} />
 
-      <RevealList as="ul" className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-3 xl:gap-x-20">
+      <RevealList as="ul" className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 xl:grid-cols-4 xl:gap-x-14">
         {t.services.items.map((item) => (
           <RevealItem key={item.title} as="li">
             <h3 className="text-[clamp(1.125rem,1.5vw,1.4375rem)]">{item.title}</h3>

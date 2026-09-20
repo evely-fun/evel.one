@@ -1,11 +1,12 @@
 export const contact = {
   telegram: 'eveluxy',
-  url: 'https://t.me/eveluxy',
+  telegramUrl: 'https://t.me/eveluxy',
+  discord: 'eveluxyy',
+  discordServer: 'https://discord.gg/jZCU7KjgH7',
 }
 
-// Public invite to the Discord server shown in section 02.
-// Set to the real invite before publishing; an empty string hides the link.
-export const discordInvite = ''
+// Payment rails shown in section 06. Leave empty to hide the list.
+export const payments: string[] = []
 
 export const site = {
   origin: 'https://evel.one',

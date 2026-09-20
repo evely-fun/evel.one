@@ -1,4 +1,3 @@
-import { discordInvite } from '../config'
 import type { Strings } from '../i18n/strings'
 import { Glyph } from '../ui/icons'
 import { Reveal, RevealList, SectionHead, Shot, Tag } from '../ui/kit'
@@ -16,7 +15,7 @@ export function Projects({ t }: { t: Strings }) {
           >
             <Reveal className="xl:sticky xl:top-28 xl:self-start xl:pt-2">
               <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
-                <span className="label text-accent">{project.n}</span>
+                <span className="mono text-[clamp(1rem,1.5vw,1.375rem)] font-extrabold text-accent">{project.n}</span>
                 <h3 className="text-[clamp(1.3125rem,2.2vw,1.875rem)]">{project.name}</h3>
               </div>
 
@@ -34,9 +33,9 @@ export function Projects({ t }: { t: Strings }) {
                 ))}
               </ul>
 
-              {'link' in project && project.link && discordInvite && (
+              {project.url && project.link && (
                 <a
-                  href={discordInvite}
+                  href={project.url}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="ui link-doc mt-7 inline-flex items-center gap-2 text-[16px] font-bold"
