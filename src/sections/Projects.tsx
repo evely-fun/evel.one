@@ -1,4 +1,6 @@
+import { discordInvite } from '../config'
 import type { Strings } from '../i18n/strings'
+import { Glyph } from '../ui/icons'
 import { Reveal, RevealList, SectionHead, Shot, Tag } from '../ui/kit'
 
 export function Projects({ t }: { t: Strings }) {
@@ -35,9 +37,17 @@ export function Projects({ t }: { t: Strings }) {
               </RevealList>
             )}
 
-            {'note' in project && project.note && (
+            {'link' in project && project.link && discordInvite && (
               <Reveal>
-                <p className="mt-6 border-l border-rule-strong pl-4 text-[15px] italic text-ink-3">{project.note}</p>
+                <a
+                  href={discordInvite}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="link-doc mt-6 inline-flex items-center gap-2 text-[16px] font-medium"
+                >
+                  {project.link}
+                  <Glyph name="arrowUpRight" size={15} />
+                </a>
               </Reveal>
             )}
           </article>

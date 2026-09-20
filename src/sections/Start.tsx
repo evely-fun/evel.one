@@ -46,8 +46,6 @@ export function Start({ t }: { t: Strings }) {
               @{contact.telegram}
             </a>
           </div>
-
-          <p className="mt-6 text-[14.5px] text-ink-3">{t.start.note}</p>
         </Reveal>
       </div>
     </section>

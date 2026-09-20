@@ -34,7 +34,7 @@ export const strings = {
       title: 'Содержание',
       items: [
         { id: 'services', n: '01', label: 'Что я делаю', hint: 'Бэкенд, фронтенд, деплой' },
-        { id: 'projects', n: '02', label: 'Проекты', hint: 'Четыре, которые можно показать' },
+        { id: 'projects', n: '02', label: 'Проекты', hint: 'Пять, которые можно показать' },
         { id: 'security', n: '03', label: 'Безопасность', hint: 'Что именно закрыто в коде' },
         { id: 'pricing', n: '04', label: 'Цены', hint: 'Три тарифа за разовый проект' },
         { id: 'longterm', n: '05', label: 'Долгое сотрудничество', hint: 'Пакет, поддержка, подписка' },
@@ -79,6 +79,17 @@ export const strings = {
         },
         {
           n: '2.2',
+          name: 'Анонка',
+          kind: 'Telegram-бот и Mini App',
+          body: 'Анонимные вопросы по личной ссылке. Кидаешь ссылку в сторис, тебе пишут, автора не видит никто. Входящие и ответы прямо в приложении, статистика по переходам и сообщениям, отдельные ссылки под каждую площадку и готовая карточка для сторис.',
+          stack: ['Python', 'aiogram', 'FastAPI', 'Postgres', 'Redis', 'React'],
+          shots: [
+            { src: '/shots/anon-link.webp', caption: 'Своя ссылка, счётчики и разделы на главной' },
+            { src: '/shots/anon-stats.webp', caption: 'Статистика переходов и сообщений за неделю' },
+          ],
+        },
+        {
+          n: '2.3',
           name: 'Проверка файлов и ссылок',
           kind: 'Telegram-бот и Mini App',
           body: 'Присылаешь файл, ссылку или хэш, получаешь отчёт: сколько антивирусов сработало из шестидесяти с лишним, что это за файл, когда его впервые увидели, все три отпечатка. Сам файл не хранится. Работает в личке и в группах, история проверок лежит в приложении.',
@@ -89,7 +100,7 @@ export const strings = {
           ],
         },
         {
-          n: '2.3',
+          n: '2.4',
           name: 'Загрузчик музыки и видео',
           kind: 'Telegram Mini App',
           body: 'Поиск трека по нескольким площадкам в одном окне, плеер внутри приложения, файл приходит прямо в чат. Видео забирается по ссылке из TikTok, Reels, Shorts и ещё десятка сайтов. Есть избранное, квоты, подписка и админка со статистикой.',
@@ -100,20 +111,20 @@ export const strings = {
           ],
         },
         {
-          n: '2.4',
+          n: '2.5',
           name: 'Discord-сервер под ключ',
           kind: 'Discord',
           body: 'Шаблон сервера по образцу крупных сообществ: экономика, роли, каналы, модерация. Проверку новых участников ведёт ИИ, а не человек с анкетой на входе.',
           stack: ['Discord', 'Python'],
           shots: [],
-          note: 'Скриншотов на странице пока нет, покажу в личке.',
+          link: 'Зайти на сервер',
         },
       ],
     },
     security: {
       n: '03',
       title: 'Безопасность',
-      lead: 'Mini App живёт внутри Telegram и обычно проверяет подпись один раз. Ниже то, что закрыто в коммерческом проекте, который я делал на заказ. Код показать не могу, разбор могу. Этот уровень идёт в тарифе Премиум.',
+      lead: 'Mini App живёт внутри Telegram и обычно проверяет подпись один раз. Разбор ниже собран на проекте из раздела 2.4. Код закрыт, устройство защиты описать могу. Этот уровень идёт в тарифе Премиум.',
       items: [
         {
           title: 'Подпись Telegram',
@@ -243,7 +254,6 @@ export const strings = {
         ],
       },
       button: 'Написать в Telegram',
-      note: 'Настоящее имя называю в личке, если доходит до договора.',
     },
     footer: {
       name: 'Эвели',
@@ -284,7 +294,7 @@ export const strings = {
       title: 'Contents',
       items: [
         { id: 'services', n: '01', label: 'What I do', hint: 'Backend, frontend, deployment' },
-        { id: 'projects', n: '02', label: 'Projects', hint: 'Four I am able to show' },
+        { id: 'projects', n: '02', label: 'Projects', hint: 'Five I am able to show' },
         { id: 'security', n: '03', label: 'Security', hint: 'What is actually closed off' },
         { id: 'pricing', n: '04', label: 'Pricing', hint: 'Three tiers per project' },
         { id: 'longterm', n: '05', label: 'Longer arrangements', hint: 'Bundles, support, retainer' },
@@ -329,6 +339,17 @@ export const strings = {
         },
         {
           n: '2.2',
+          name: 'Anonymous questions',
+          kind: 'Telegram bot and Mini App',
+          body: 'Anonymous questions through a personal link. You drop the link in your stories, people write to you, and nobody sees who sent what. Inbox and replies from inside the app, stats on clicks and messages, a separate link per platform and a card built for stories.',
+          stack: ['Python', 'aiogram', 'FastAPI', 'Postgres', 'Redis', 'React'],
+          shots: [
+            { src: '/shots/anon-link.webp', caption: 'Your link, the counters and the main sections' },
+            { src: '/shots/anon-stats.webp', caption: 'Clicks and messages over the week' },
+          ],
+        },
+        {
+          n: '2.3',
           name: 'File and link checker',
           kind: 'Telegram bot and Mini App',
           body: 'Send a file, a link or a hash and get a report: how many of sixty-odd engines flagged it, what the file is, when it was first seen, all three fingerprints. The file itself is never stored. Works in direct messages and in groups, and the check history lives in the app.',
@@ -339,7 +360,7 @@ export const strings = {
           ],
         },
         {
-          n: '2.3',
+          n: '2.4',
           name: 'Music and video downloader',
           kind: 'Telegram Mini App',
           body: 'Search a track across several sources in one window, play it inside the app, and the file lands straight in the chat. Video is pulled by link from TikTok, Reels, Shorts and a dozen other sites. Favourites, quotas, a subscription and an admin panel with statistics.',
@@ -350,20 +371,20 @@ export const strings = {
           ],
         },
         {
-          n: '2.4',
+          n: '2.5',
           name: 'Discord server, set up end to end',
           kind: 'Discord',
           body: 'A server built on the pattern of the large communities: economy, roles, channels, moderation. New members are screened by an AI rather than by a person with a form at the door.',
           stack: ['Discord', 'Python'],
           shots: [],
-          note: 'No screenshots on the page yet, I can show them directly.',
+          link: 'Open the server',
         },
       ],
     },
     security: {
       n: '03',
       title: 'Security',
-      lead: 'A Mini App lives inside Telegram and usually verifies the signature once. Below is what is closed off in a commercial project I built to order. I cannot show the code, I can walk through the work. This is the level that ships in the Premium tier.',
+      lead: 'A Mini App lives inside Telegram and usually verifies the signature once. The list below comes from the project in section 2.4. The code is closed, the shape of the defence is not. This is the level that ships in the Premium tier.',
       items: [
         {
           title: 'Telegram signature check',
@@ -493,7 +514,6 @@ export const strings = {
         ],
       },
       button: 'Message me on Telegram',
-      note: 'I give my real name privately, if it gets as far as a contract.',
     },
     footer: {
       name: 'Evely',
