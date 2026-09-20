@@ -80,8 +80,9 @@ export const strings = {
           body: 'Самый большой из моих проектов. Случайный собеседник голосом или текстом, новая маска в каждом разговоре, голосовые комнаты на несколько человек и набор игр поверх них: мафия, городская мафия, бункер, алиас, крестики-нолики. Сверху энергия, валюта, друзья, лидерборд и магазин. Русский и английский, светлая и тёмная тема.',
           stack: ['Python', 'aiogram', 'FastAPI', 'Postgres', 'Redis', 'React'],
           shots: [
-            { src: '/shots/voice-home.webp', caption: 'Подбор собеседника: голосом или текстом, за энергию' },
-            { src: '/shots/voice-games.webp', caption: 'Игры, каждая работает через голосовой канал' },
+            { src: '/shots/voice-search.webp', caption: 'Главная: подбор собеседника, друзья в сети, комнаты' },
+            { src: '/shots/voice-rooms.webp', caption: 'Комната на восемь человек, у каждого маска и ведущий' },
+            { src: '/shots/voice-rating.webp', caption: 'Оценка собеседника звёздами прямо в разговоре' },
           ],
         },
         {
@@ -399,8 +400,9 @@ export const strings = {
           body: 'The largest thing I have built. A random partner by voice or text, a new mask every conversation, voice rooms for several people and a set of games on top of them: mafia, city mafia, bunker, alias, tic-tac-toe. Around that sit energy, currency, friends, a leaderboard and a shop. Russian and English, light and dark.',
           stack: ['Python', 'aiogram', 'FastAPI', 'Postgres', 'Redis', 'React'],
           shots: [
-            { src: '/shots/voice-home.webp', caption: 'Matching a partner by voice or text, paid in energy' },
-            { src: '/shots/voice-games.webp', caption: 'Games, each one running through a voice channel' },
+            { src: '/shots/voice-search.webp', caption: 'Home: partner matching, friends online, open rooms' },
+            { src: '/shots/voice-rooms.webp', caption: 'A room of eight, everyone masked, one of them hosting' },
+            { src: '/shots/voice-rating.webp', caption: 'Rating your partner in stars during the call' },
           ],
         },
         {

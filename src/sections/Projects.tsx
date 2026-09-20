@@ -8,12 +8,16 @@ export function Projects({ t }: { t: Strings }) {
       <SectionHead n={t.projects.n} id="projects" title={t.projects.title} lead={t.projects.lead} />
 
       <div className="mt-14 flex flex-col gap-16 sm:gap-20">
-        {t.projects.items.map((project) => (
+        {t.projects.items.map((project) => {
+          const wide = project.shots.length > 2
+          return (
           <article
             key={project.n}
-            className="grid gap-8 border-t border-rule pt-8 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] xl:gap-16"
+            className={`grid gap-8 border-t border-rule pt-8 ${
+              wide ? 'xl:gap-10' : 'xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] xl:gap-16'
+            }`}
           >
-            <Reveal className="xl:sticky xl:top-28 xl:self-start xl:pt-2">
+            <Reveal className={wide ? '' : 'xl:sticky xl:top-28 xl:self-start xl:pt-2'}>
               <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
                 <span className="mono text-[clamp(1rem,1.5vw,1.375rem)] font-extrabold text-accent">{project.n}</span>
                 <h3 className="text-[clamp(1.3125rem,2.2vw,1.875rem)]">{project.name}</h3>
@@ -47,14 +51,19 @@ export function Projects({ t }: { t: Strings }) {
             </Reveal>
 
             {project.shots.length > 0 && (
-              <RevealList className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:pb-0">
+              <RevealList
+                className={`flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:grid sm:gap-8 sm:overflow-visible sm:pb-0 ${
+                  wide ? 'sm:grid-cols-2 xl:grid-cols-3' : 'sm:grid-cols-2'
+                }`}
+              >
                 {project.shots.map((shot) => (
                   <Shot key={shot.src} src={shot.src} caption={shot.caption} />
                 ))}
               </RevealList>
             )}
           </article>
-        ))}
+          )
+        })}
       </div>
     </section>
   )

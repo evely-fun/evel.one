@@ -51,7 +51,7 @@ export function Contents({ t }: { t: Strings }) {
         transition={{ duration: 0.6, delay: 0.12, ease: ease.doc }}
         className="xl:pb-2"
       >
-        <h2 className="label border-t border-rule-strong pt-5 text-ink-3">{t.contents.title}</h2>
+        <h2 className="label text-ink-3">{t.contents.title}</h2>
 
         <ol className="mt-2">
           {t.contents.items.map((item) => (
