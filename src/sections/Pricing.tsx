@@ -1,78 +1,90 @@
 import { contact } from '../config'
 import type { Strings } from '../i18n/strings'
-import { Check, Send } from '../ui/icons'
-import { Button, RevealGroup, RevealItem, SectionHead } from '../ui/kit'
-
-function plural(count: number, one: string, few: string) {
-  const last = count % 10
-  const teen = count % 100
-  if (last === 1 && teen !== 11) return one
-  return few
-}
+import { Glyph } from '../ui/icons'
+import { Reveal, RevealItem, RevealList, SectionHead } from '../ui/kit'
 
 export function Pricing({ t }: { t: Strings }) {
   return (
-    <section id="pricing" className="shell py-16 sm:py-20 lg:py-24">
-      <SectionHead title={t.pricing.title} lead={t.pricing.lead} />
+    <section id="pricing">
+      <SectionHead n={t.pricing.n} id="pricing" title={t.pricing.title} lead={t.pricing.lead} />
 
-      <RevealGroup className="mt-12 grid gap-4 lg:grid-cols-3 lg:gap-5">
-        {t.pricing.tiers.map((tier) => (
-          <RevealItem
-            key={tier.name}
-            as="article"
-            className={`relative flex flex-col rounded-[24px] p-7 lg:p-8 ${
-              tier.featured
-                ? 'border-2 border-price bg-price-wash lg:-mt-4 lg:pb-9 lg:pt-9'
-                : 'bg-card shadow-soft'
-            }`}
-          >
-            {tier.featured && (
-              <span className="absolute -top-3 left-7 inline-flex items-center rounded-full bg-price px-3 py-1 text-[11.5px] font-extrabold text-on-price">
-                {t.pricing.badge}
-              </span>
-            )}
+      <div className="mt-10 max-w-4xl">
+        <div className="label hidden border-b border-rule-strong pb-2 text-ink-3 sm:grid sm:grid-cols-[minmax(0,1fr)_6rem_6rem_7rem] sm:gap-x-6">
+          <span>{t.pricing.head.name}</span>
+          <span>{t.pricing.head.price}</span>
+          <span>{t.pricing.head.days}</span>
+          <span>{t.pricing.head.revisions}</span>
+        </div>
 
-            <h3 className="text-[clamp(1.125rem,1.45vw,1.3125rem)] font-extrabold text-ink">{tier.name}</h3>
-            <p className="mt-2 min-h-[2.7em] text-[clamp(0.875rem,1.05vw,0.9688rem)] leading-snug text-ink-soft">
-              {tier.summary}
-            </p>
+        <RevealList as="ul">
+          {t.pricing.rows.map((row) => (
+            <RevealItem key={row.name} as="li" className="border-b border-rule py-5">
+              <div className="sm:grid sm:grid-cols-[minmax(0,1fr)_6rem_6rem_7rem] sm:items-baseline sm:gap-x-6">
+                <h3 className="text-[17.5px] font-semibold">
+                  {row.name}
+                  {'mark' in row && row.mark && <span className="text-accent">*</span>}
+                </h3>
 
-            <div className="mt-6 flex items-baseline gap-2">
-              <span className="tabular text-[clamp(2.375rem,3.2vw,3rem)] font-extrabold leading-none tracking-[-0.03em] text-ink">
-                {tier.price}
-              </span>
-              <span className={`text-[13px] font-semibold ${tier.featured ? 'text-ink-soft' : 'text-ink-faint'}`}>
-                {t.pricing.per}
-              </span>
-            </div>
+                <div className="mt-2 flex items-baseline gap-4 sm:mt-0 sm:contents">
+                  <span className="mono text-[19px] font-medium sm:text-[17px]">{row.price}</span>
+                  <span className="mono text-[14px] text-ink-2">{row.days}</span>
+                  <span className="mono text-[14px] text-ink-2">{row.revisions}</span>
+                </div>
+              </div>
 
-            <p className={`tabular mt-3 text-[13px] font-semibold ${tier.featured ? 'text-ink-soft' : 'text-ink-faint'}`}>
-              {tier.days} {tier.days === 2 ? t.pricing.daysTwo : t.pricing.days}
-              {' · '}
-              {tier.revisions} {plural(tier.revisions, t.pricing.revisionsOne, t.pricing.revisionsFew)}
-            </p>
+              <p className="measure mt-3 text-[15.5px] leading-relaxed text-ink-2">{row.body}</p>
+            </RevealItem>
+          ))}
+        </RevealList>
 
-            <ul className="mt-6 flex flex-1 flex-col gap-3 border-t border-line pt-6">
-              {tier.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2.5 text-[clamp(0.9063rem,1.05vw,1rem)] leading-snug text-ink">
-                  <Check size={17} className={`mt-0.5 shrink-0 ${tier.featured ? 'text-price' : 'text-ok'}`} />
-                  {feature}
-                </li>
-              ))}
-            </ul>
+        <Reveal>
+          <p className="mt-5 text-[14.5px] text-ink-3">
+            <span className="text-accent">*</span> {t.pricing.note}
+          </p>
+        </Reveal>
+      </div>
 
-            <Button
-              href={contact.url}
-              external
-              tone={tier.featured ? 'ink' : 'soft'}
-              icon={<Send size={17} />}
-              className="mt-7 w-full"
-            >
-              {t.nav.write}
-            </Button>
-          </RevealItem>
-        ))}
-      </RevealGroup>
+      <Reveal>
+        <a
+          href={contact.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="link-doc mt-7 inline-flex items-center gap-2 text-[16px] font-medium"
+        >
+          {t.ui.write}
+          <Glyph name="arrowUpRight" size={15} />
+        </a>
+      </Reveal>
+    </section>
+  )
+}
+
+export function Longterm({ t }: { t: Strings }) {
+  return (
+    <section id="longterm">
+      <SectionHead n={t.longterm.n} id="longterm" title={t.longterm.title} lead={t.longterm.lead} />
+
+      <div className="mt-10 max-w-4xl">
+        <div className="label hidden border-b border-rule-strong pb-2 text-ink-3 sm:grid sm:grid-cols-[minmax(0,1fr)_11rem] sm:gap-x-6">
+          <span>{t.longterm.head.name}</span>
+          <span>{t.longterm.head.price}</span>
+        </div>
+
+        <RevealList as="ul">
+          {t.longterm.rows.map((row) => (
+            <RevealItem key={row.name} as="li" className="border-b border-rule py-5">
+              <div className="sm:grid sm:grid-cols-[minmax(0,1fr)_11rem] sm:items-baseline sm:gap-x-6">
+                <h3 className="text-[17.5px] font-semibold">{row.name}</h3>
+                <p className="mt-2 flex items-baseline gap-2 sm:mt-0">
+                  <span className="mono text-[19px] font-medium sm:text-[17px]">{row.price}</span>
+                  <span className="text-[14px] text-ink-3">{row.unit}</span>
+                </p>
+              </div>
+              <p className="measure mt-3 text-[15.5px] leading-relaxed text-ink-2">{row.body}</p>
+            </RevealItem>
+          ))}
+        </RevealList>
+      </div>
     </section>
   )
 }

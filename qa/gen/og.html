@@ -2,71 +2,71 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/node_modules/@fontsource-variable/montserrat/index.css" />
+    <link rel="stylesheet" href="/node_modules/@fontsource-variable/source-serif-4/index.css" />
+    <link rel="stylesheet" href="/node_modules/@fontsource-variable/jetbrains-mono/index.css" />
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body {
         width: 1200px;
         height: 630px;
-        background: #f9f7f3;
-        font-family: 'Montserrat Variable', sans-serif;
-        color: #14161d;
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        align-items: center;
-        gap: 48px;
-        padding: 64px;
+        background: #faf8f4;
+        color: #38322c;
+        font-family: 'Source Serif 4 Variable', serif;
+        padding: 64px 72px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         overflow: hidden;
       }
-      .mark { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
-      .mark span { color: #8f8e92; }
+      .label {
+        font-family: 'JetBrains Mono Variable', monospace;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #8a7f74;
+      }
       h1 {
         margin-top: 26px;
-        font-size: 62px;
-        font-weight: 800;
-        line-height: 1.02;
-        letter-spacing: -0.03em;
+        font-size: 74px;
+        font-weight: 600;
+        line-height: 1.05;
+        letter-spacing: -0.015em;
+        max-width: 17ch;
+        color: #241f1a;
       }
-      p { margin-top: 24px; font-size: 22px; line-height: 1.45; color: #5c6070; font-weight: 500; }
-      .facts { margin-top: 36px; display: flex; gap: 36px; font-size: 19px; font-weight: 800; }
-      .facts span { color: #8f8e92; font-weight: 600; }
-      .panel {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 1;
-        border-radius: 32px;
-        background: #1a84f7;
-        overflow: hidden;
+      p.abstract {
+        margin-top: 26px;
+        font-size: 25px;
+        line-height: 1.5;
+        max-width: 42ch;
+        color: #5a5149;
       }
-      .panel svg, .panel img { position: absolute; }
-      .panel svg { inset: 0; width: 100%; height: 100%; }
-      .lock { left: 50%; top: 50%; width: 48%; transform: translate(-50%, -50%); }
-      .key { right: 9%; top: 14%; width: 20%; }
-      .link { bottom: 12%; left: 8%; width: 21%; }
-      .spark { left: 13%; top: 11%; width: 15%; }
+      .rule { height: 1px; background: rgba(36,31,26,0.22); }
+      .meta { display: flex; gap: 64px; padding-top: 22px; }
+      .meta dt { font-family: 'JetBrains Mono Variable', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #8a7f74; }
+      .meta dd { margin-top: 7px; font-size: 20px; color: #241f1a; }
+      .foot { display: flex; justify-content: space-between; align-items: flex-end; }
+      .mark { font-family: 'JetBrains Mono Variable', monospace; font-size: 17px; color: #241f1a; }
+      .mark span { color: #8a7f74; }
     </style>
   </head>
   <body>
     <div>
-      <div class="mark">evel<span>.one</span></div>
+      <div class="label">Эвели</div>
       <h1>Telegram Mini Apps под ключ</h1>
-      <p>Бэкенд на Python, фронтенд на TypeScript, деплой на сервер.</p>
-      <div class="facts">
-        <div>от 2 дней <span>срок</span></div>
-        <div>от $20 <span>проект</span></div>
-        <div>50% <span>предоплата</span></div>
-      </div>
+      <p class="abstract">Бэкенд на Python, фронтенд на TypeScript, деплой на сервер. Проекты, цены и условия одной страницей.</p>
     </div>
-    <div class="panel">
-      <svg viewBox="0 0 400 400">
-        <ellipse cx="200" cy="205" rx="150" ry="96" fill="none" stroke="#fdf6e8" stroke-opacity="0.55" stroke-width="3" transform="rotate(-18 200 205)" />
-        <circle cx="330" cy="120" r="6" fill="#fdf6e8" fill-opacity="0.75" />
-        <circle cx="72" cy="268" r="8" fill="#fdf6e8" fill-opacity="0.6" />
-      </svg>
-      <img class="lock" src="/art/clay/lock.webp" />
-      <img class="key" src="/art/clay/key.webp" />
-      <img class="link" src="/art/clay/link.webp" />
-      <img class="spark" src="/art/clay/sparkles.webp" />
+    <div>
+      <div class="rule"></div>
+      <div class="meta">
+        <div><dt>Цены</dt><dd>от $20 за проект</dd></div>
+        <div><dt>Срок</dt><dd>от 2 дней</dd></div>
+        <div><dt>Ответ</dt><dd>в тот же день</dd></div>
+      </div>
+      <div class="foot" style="margin-top:34px">
+        <div class="mark">evel<span>.one</span></div>
+      </div>
     </div>
   </body>
 </html>

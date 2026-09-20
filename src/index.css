@@ -1,138 +1,56 @@
-@import '@fontsource-variable/montserrat';
+@import '@fontsource-variable/source-serif-4';
+@import '@fontsource-variable/jetbrains-mono';
 @import 'tailwindcss';
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
-  --font-sans: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4 Variable", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Source Serif 4 Variable", ui-serif, Georgia, serif;
 
   --color-paper: var(--paper);
-  --color-card: var(--card);
-  --color-well: var(--well);
-  --color-rim: var(--rim);
+  --color-panel: var(--panel);
   --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-ink-faint: var(--ink-faint);
-  --color-line: var(--line);
-  --color-action: var(--action);
-  --color-on-action: var(--on-action);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
 
-  --color-work: var(--work);
-  --color-work-wash: var(--work-wash);
-  --color-work-ink: var(--work-ink);
-  --color-safe: var(--safe);
-  --color-safe-wash: var(--safe-wash);
-  --color-price: var(--price);
-  --color-price-wash: var(--price-wash);
-  --color-on-price: var(--on-price);
-  --color-deal: var(--deal);
-  --color-deal-wash: var(--deal-wash);
-  --color-note: var(--note);
-  --color-note-wash: var(--note-wash);
-  --color-note-ink: var(--note-ink);
-  --color-ok: var(--ok);
-  --color-danger: var(--danger);
-
-  --color-band: var(--band);
-  --color-band-card: var(--band-card);
-  --color-band-rim: var(--band-rim);
-  --color-band-ink: var(--band-ink);
-  --color-band-soft: var(--band-soft);
-
-  --color-close: var(--close);
-  --color-close-ink: var(--close-ink);
-  --color-close-soft: var(--close-soft);
-
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-doc: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
   color-scheme: light;
 
-  --paper: oklch(0.975 0.006 75);
-  --card: oklch(1 0 0);
-  --well: oklch(0.945 0.007 75);
-  --rim: oklch(0.885 0.009 75);
-  --ink: oklch(0.23 0.018 265);
-  --ink-soft: oklch(0.4 0.017 265);
-  --ink-faint: oklch(0.47 0.016 265);
-  --line: oklch(0.23 0.018 265 / 0.08);
-  --action: oklch(0.23 0.018 265);
-  --on-action: oklch(0.985 0.004 75);
-
-  --work: oklch(0.62 0.19 252);
-  --work-wash: oklch(0.62 0.19 252 / 0.12);
-  --work-ink: oklch(0.44 0.16 252);
-  --safe: oklch(0.6 0.14 162);
-  --safe-wash: oklch(0.6 0.14 162 / 0.12);
-  --price: oklch(0.72 0.16 72);
-  --price-wash: oklch(0.72 0.16 72 / 0.16);
-  --on-price: oklch(0.2 0.015 265);
-  --deal: oklch(0.64 0.2 28);
-  --deal-wash: oklch(0.64 0.2 28 / 0.12);
-  --note: oklch(0.6 0.2 292);
-  --note-wash: oklch(0.6 0.2 292 / 0.12);
-  --note-ink: oklch(0.44 0.2 292);
-  --ok: oklch(0.6 0.15 155);
-  --danger: oklch(0.55 0.2 27);
-
-  --band: oklch(0.355 0.085 168);
-  --band-card: oklch(0.405 0.085 168);
-  --band-rim: oklch(0.48 0.08 168);
-  --band-ink: oklch(0.985 0.012 120);
-  --band-soft: oklch(0.9 0.035 160);
-
-  --close: oklch(0.2 0.015 265);
-  --close-ink: oklch(0.985 0.004 75);
-  --close-soft: oklch(0.78 0.012 265);
-
-  --shadow-soft: 0 1px 2px oklch(0.3 0.02 265 / 0.06), 0 10px 24px -14px oklch(0.3 0.02 265 / 0.22);
-  --shadow-float: 0 1px 2px oklch(0.3 0.02 265 / 0.08), 0 18px 40px -18px oklch(0.3 0.02 265 / 0.35);
+  --paper: oklch(0.982 0.004 85);
+  --panel: oklch(0.955 0.005 85);
+  --ink: oklch(0.22 0.012 60);
+  --ink-2: oklch(0.42 0.012 60);
+  --ink-3: oklch(0.475 0.011 60);
+  --rule: oklch(0.22 0.012 60 / 0.15);
+  --rule-strong: oklch(0.22 0.012 60 / 0.32);
+  --accent: oklch(0.5 0.15 35);
+  --accent-soft: oklch(0.5 0.15 35 / 0.1);
+  --on-accent: oklch(0.985 0.004 85);
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --paper: oklch(0.165 0.01 265);
-  --card: oklch(0.215 0.012 265);
-  --well: oklch(0.255 0.013 265);
-  --rim: oklch(0.34 0.013 265);
-  --ink: oklch(0.965 0.005 75);
-  --ink-soft: oklch(0.76 0.012 265);
-  --ink-faint: oklch(0.65 0.013 265);
-  --line: oklch(1 0 0 / 0.075);
-  --action: oklch(0.95 0.006 75);
-  --on-action: oklch(0.2 0.015 265);
-
-  --work: oklch(0.7 0.16 252);
-  --work-wash: oklch(0.7 0.16 252 / 0.16);
-  --work-ink: oklch(0.78 0.14 252);
-  --safe: oklch(0.76 0.14 162);
-  --safe-wash: oklch(0.76 0.14 162 / 0.16);
-  --price: oklch(0.82 0.15 75);
-  --price-wash: oklch(0.82 0.15 75 / 0.16);
-  --on-price: oklch(0.2 0.015 265);
-  --deal: oklch(0.72 0.17 30);
-  --deal-wash: oklch(0.72 0.17 30 / 0.16);
-  --note: oklch(0.7 0.16 292);
-  --note-wash: oklch(0.7 0.16 292 / 0.16);
-  --note-ink: oklch(0.79 0.14 292);
-  --ok: oklch(0.76 0.14 155);
-  --danger: oklch(0.7 0.18 27);
-
-  --band: oklch(0.3 0.075 168);
-  --band-card: oklch(0.355 0.078 168);
-  --band-rim: oklch(0.44 0.075 168);
-  --band-ink: oklch(0.975 0.012 120);
-  --band-soft: oklch(0.88 0.035 160);
-
-  --close: oklch(0.255 0.016 265);
-  --close-ink: oklch(0.985 0.004 75);
-  --close-soft: oklch(0.8 0.012 265);
-
-  --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.3), 0 10px 24px -14px oklch(0 0 0 / 0.6);
-  --shadow-float: 0 1px 2px oklch(0 0 0 / 0.35), 0 18px 40px -16px oklch(0 0 0 / 0.75);
+  --paper: oklch(0.17 0.008 60);
+  --panel: oklch(0.215 0.009 60);
+  --ink: oklch(0.945 0.006 85);
+  --ink-2: oklch(0.755 0.008 70);
+  --ink-3: oklch(0.655 0.008 70);
+  --rule: oklch(1 0 0 / 0.12);
+  --rule-strong: oklch(1 0 0 / 0.26);
+  --accent: oklch(0.74 0.13 42);
+  --accent-soft: oklch(0.74 0.13 42 / 0.14);
+  --on-accent: oklch(0.18 0.01 60);
 }
 
 @layer base {
@@ -143,9 +61,10 @@
 
   body {
     margin: 0;
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.55;
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.72;
+    font-weight: 400;
     background: var(--paper);
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
@@ -153,20 +72,11 @@
     overflow-x: hidden;
   }
 
-  ::selection {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--work);
-    outline-offset: 3px;
-    border-radius: 6px;
-  }
-
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
     margin: 0;
-    letter-spacing: -0.025em;
+    font-weight: 600;
+    line-height: 1.18;
+    letter-spacing: -0.012em;
     text-wrap: balance;
   }
 
@@ -175,39 +85,79 @@
     text-wrap: pretty;
   }
 
+  ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
   img {
     display: block;
   }
 
+  a {
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
   section[id] {
-    scroll-margin-top: 88px;
+    scroll-margin-top: 92px;
   }
 }
 
 @layer utilities {
-  .tabular {
+  .mono {
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
   }
 
-  .shadow-soft {
-    box-shadow: var(--shadow-soft);
+  .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
   }
 
-  .shadow-float {
-    box-shadow: var(--shadow-float);
+  .measure {
+    max-width: 40rem;
   }
 
-  .shell {
+  .page {
     width: 100%;
-    max-width: 1220px;
+    max-width: 1280px;
     margin-inline: auto;
-    padding-inline: 20px;
+    padding-inline: 22px;
   }
 
   @media (min-width: 768px) {
-    .shell {
-      padding-inline: 44px;
+    .page {
+      padding-inline: 48px;
     }
+  }
+
+  .link-doc {
+    text-decoration: underline;
+    text-decoration-color: var(--rule-strong);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 0.18s ease, color 0.18s ease;
+  }
+
+  .link-doc:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
   }
 }
 

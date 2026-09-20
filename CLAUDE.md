@@ -1,39 +1,57 @@
 # evel.one
 
-Single-page business card for Эвели: Telegram Mini App development, pricing and terms.
-Audience is cold contacts from Telegram and Discord direct messages, so the page has to
-land the offer, the proof and the price in one scroll.
+A one page business card for Эвели, laid out as a document rather than a landing page:
+masthead, table of contents, numbered sections, figures with captions, rate tables.
+The audience is cold contacts from Telegram and Discord direct messages.
 
-## Design source
+## Design
 
-The visual language comes from `github.com/evely-fun/anteiku-design`, folder `design-skill/`.
-Read it before changing anything visual. The rules that matter most here:
+The page reads like a well set paper. Decisions that hold it together:
 
-- Warm paper background, no pure white page, no gradients on surfaces, no glow, no backdrop blur.
-- Colour marks a section. Actions are ink coloured.
-- Montserrat Variable from fontsource, served locally. Not Inter, not Geist.
-- Sentence case everywhere. No caps lock, no spaced micro labels.
-- Clay icons name things. Stroke glyphs mark what you click. No emoji as icons, no bare Lucide.
-- Copy has no em dashes and no exclamation marks. Slang stays out of anything about money.
+- **Type.** Source Serif 4 Variable for everything you read, JetBrains Mono Variable for
+  labels, section numbers and table figures. Both carry full Cyrillic.
+- **Colour.** Warm paper, warm near black ink, one accent (deep rust) used only for section
+  numbers, the active entry in the contents rail and the reading progress bar.
+- **Rules, not boxes.** Hairlines separate things. There are no cards, no shadows, no
+  gradients, no glass.
+- **Icons.** Phosphor Icons, light weight, MIT, vendored as paths in `src/ui/icons.tsx`.
+  Nothing is pulled from the Anteiku asset gallery.
+- **Figures.** Only real screenshots of shipped apps, in `public/shots/`. Each one is cropped
+  to a phone aspect with a soft fade at the bottom edge so the crop reads as deliberate.
+- **Motion.** Reveal on scroll, a reading progress bar, a contents rail that tracks the
+  active section, and a small parallax inside each figure. Nothing pulses or loops.
+
+## Copy rules
+
+No em dashes, no exclamation marks, sentence case, no slang anywhere near money.
+Gender is never guessed. All strings live in `src/i18n/strings.ts`, Russian and English
+side by side.
+
+## Privacy
+
+The owner's real name is never published. Two screenshots in the source gallery greet the
+user by first name (`chekni/light-01-home`, `anteicut/light-01-home`); they are excluded on
+purpose. Check any new screenshot for the same before adding it.
 
 ## Stack
 
-React 19, Vite, Tailwind 4, `motion`, TypeScript. No backend. Builds to static files
-and deploys to Cloudflare Pages.
+React 19, Vite, Tailwind 4, `motion`, TypeScript. No backend. Builds to static files and
+deploys to Cloudflare Pages.
 
 ## Layout
 
 ```
 src/
-  i18n/strings.ts      all copy, ru and en side by side
-  lib/motion.ts        easing, springs, shared variants
+  i18n/strings.ts      all copy, ru and en, plus the section id list
+  lib/motion.ts        easing and shared variants
   lib/prefs.ts         theme and language, stored per browser
-  ui/icons.tsx         stroke glyphs drawn by hand
-  ui/kit.tsx           Clay, Reveal, Button, SectionHead, Chip
-  sections/            one file per section, in page order
-  index.css            tokens for both themes
+  lib/toc.ts           scrollspy for the contents rail
+  ui/icons.tsx         Phosphor paths
+  ui/kit.tsx           Reveal, SectionHead, Shot, Tag
+  sections/            Header, Masthead, Toc, and one file per numbered section
+  index.css            tokens and document typography
 public/
-  art/clay/            clay icons taken from the asset gallery
+  shots/               screenshots of the shipped apps
   _headers             CSP, HSTS and cache rules for Cloudflare Pages
 qa/
   shot.mjs             screenshot matrix, checks overflow and console errors
@@ -48,8 +66,8 @@ npx tsc -b && npx oxlint && npm run build
 npm run dev
 node qa/shot.mjs '' light,dark ru,en    # 6 viewports, both themes, both languages
 node qa/contrast.mjs                     # AA in light and dark
-grep -n '—' src/i18n/strings.ts          # must be empty
-grep -n '!' src/i18n/strings.ts          # must be empty
+grep -c '—' src/i18n/strings.ts          # must be 0
+grep -c '!' src/i18n/strings.ts          # must be 0
 ```
 
 Screenshots are the proof. Words are not.

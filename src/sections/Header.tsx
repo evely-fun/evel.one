@@ -1,65 +1,55 @@
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
+import { AnimatePresence, motion, useScroll, useSpring } from 'motion/react'
 import { useState } from 'react'
 import { contact } from '../config'
 import type { Strings } from '../i18n/strings'
 import { ease, spring } from '../lib/motion'
-import { Close, Language, Menu, Moon, Send, Sun } from '../ui/icons'
+import { Glyph } from '../ui/icons'
 
 type HeaderProps = {
   t: Strings
   theme: 'light' | 'dark'
   onTheme: () => void
   onLang: () => void
+  active: string
 }
 
-const links = [
-  { id: 'work', key: 'work' },
-  { id: 'security', key: 'security' },
-  { id: 'pricing', key: 'pricing' },
-  { id: 'terms', key: 'terms' },
-] as const
-
-export function Header({ t, theme, onTheme, onLang }: HeaderProps) {
-  const [stuck, setStuck] = useState(false)
+export function Header({ t, theme, onTheme, onLang, active }: HeaderProps) {
   const [open, setOpen] = useState(false)
-  const { scrollY } = useScroll()
-
-  useMotionValueEvent(scrollY, 'change', (value) => {
-    setStuck(value > 16)
-  })
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 280, damping: 40, restDelta: 0.001 })
 
   const iconButton =
-    'inline-flex h-10 w-10 items-center justify-center rounded-xl text-ink-soft transition-colors hover:text-ink hover:bg-well'
+    'inline-flex h-9 w-9 items-center justify-center rounded-md text-ink-3 transition-colors hover:bg-panel hover:text-ink'
 
   return (
-    <header
-      className={`sticky top-0 z-50 bg-paper transition-shadow duration-300 ${
-        stuck ? 'border-b border-line' : 'border-b border-transparent'
-      }`}
-    >
-      <div className="shell flex h-18 items-center justify-between gap-4">
-        <a href="#top" className="text-[17px] font-extrabold tracking-[-0.03em] text-ink">
-          evel<span className="text-ink-faint">.one</span>
+    <header className="sticky top-0 z-50 border-b border-rule bg-paper">
+      <motion.div
+        className="absolute inset-x-0 top-0 h-[2px] origin-left bg-accent"
+        style={{ scaleX: progress }}
+      />
+
+      <div className="page flex h-14 items-center justify-between gap-4">
+        <a href="#top" className="mono text-[13px] font-medium tracking-tight">
+          evel<span className="text-ink-3">.one</span>
         </a>
 
-        <nav className="hidden items-center gap-1 lg:flex">
-          {links.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              className="rounded-xl px-3.5 py-2 text-[14px] font-semibold text-ink-soft transition-colors hover:bg-well hover:text-ink"
-            >
-              {t.nav[link.key]}
-            </a>
-          ))}
-        </nav>
-
         <div className="flex items-center gap-1">
-          <button type="button" onClick={onLang} className={iconButton} aria-label={t.nav.lang} title={t.nav.lang}>
-            <Language />
+          <button
+            type="button"
+            onClick={() => setOpen((value) => !value)}
+            className="label inline-flex h-9 items-center gap-2 rounded-md px-2 text-ink-3 transition-colors hover:bg-panel hover:text-ink lg:hidden"
+            aria-expanded={open}
+            aria-label={open ? t.ui.close : t.ui.menu}
+          >
+            <Glyph name={open ? 'close' : 'list'} size={17} />
+            <span className="hidden sm:inline">{open ? t.ui.close : t.ui.menu}</span>
           </button>
-          <button type="button" onClick={onTheme} className={iconButton} aria-label={t.nav.theme} title={t.nav.theme}>
-            {theme === 'dark' ? <Sun /> : <Moon />}
+
+          <button type="button" onClick={onLang} className={iconButton} aria-label={t.ui.lang} title={t.ui.lang}>
+            <Glyph name="translate" size={17} />
+          </button>
+          <button type="button" onClick={onTheme} className={iconButton} aria-label={t.ui.theme} title={t.ui.theme}>
+            <Glyph name={theme === 'dark' ? 'sun' : 'moon'} size={17} />
           </button>
 
           <motion.a
@@ -68,55 +58,40 @@ export function Header({ t, theme, onTheme, onLang }: HeaderProps) {
             rel="noreferrer noopener"
             whileTap={{ scale: 0.97 }}
             transition={spring.press}
-            className="ml-1 hidden h-10 items-center gap-2 rounded-xl bg-action px-4 text-[14px] font-bold text-on-action sm:inline-flex"
+            className="ml-1.5 inline-flex h-9 items-center gap-2 rounded-md bg-ink px-3 text-[14px] font-medium text-paper sm:ml-2 sm:px-3.5"
           >
-            <Send size={17} />
-            {t.nav.write}
+            <Glyph name="telegram" size={15} />
+            {t.ui.write}
           </motion.a>
-
-          <button
-            type="button"
-            onClick={() => setOpen((value) => !value)}
-            className={`${iconButton} lg:hidden`}
-            aria-label={open ? t.nav.close : t.nav.menu}
-            aria-expanded={open}
-          >
-            {open ? <Close /> : <Menu />}
-          </button>
         </div>
       </div>
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <motion.nav
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: ease.drawer }}
-            className="overflow-hidden border-t border-line lg:hidden"
+            transition={{ duration: 0.3, ease: ease.doc }}
+            className="overflow-hidden border-t border-rule lg:hidden"
           >
-            <nav className="shell flex flex-col py-3">
-              {links.map((link) => (
-                <a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  onClick={() => setOpen(false)}
-                  className="rounded-xl px-3 py-3 text-[15px] font-semibold text-ink"
-                >
-                  {t.nav[link.key]}
-                </a>
+            <ol className="page py-2">
+              {t.contents.items.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-baseline gap-3 py-2.5 ${
+                      active === item.id ? 'text-accent' : 'text-ink'
+                    }`}
+                  >
+                    <span className="label text-ink-3">{item.n}</span>
+                    {item.label}
+                  </a>
+                </li>
               ))}
-              <a
-                href={contact.url}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="mt-2 mb-2 inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-action text-[15px] font-bold text-on-action sm:hidden"
-              >
-                <Send size={18} />
-                {t.nav.write}
-              </a>
-            </nav>
-          </motion.div>
+            </ol>
+          </motion.nav>
         )}
       </AnimatePresence>
     </header>

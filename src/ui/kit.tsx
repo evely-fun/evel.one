@@ -1,59 +1,39 @@
-import { motion } from 'motion/react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import type { ReactNode } from 'react'
-import { rise, spring, stagger, viewport } from '../lib/motion'
-
-export function Clay({ name, size = 48, className = '' }: { name: string; size?: number; className?: string }) {
-  return (
-    <img
-      src={`/art/clay/${name}.webp`}
-      width={size}
-      height={size}
-      alt=""
-      loading="lazy"
-      decoding="async"
-      style={{ width: size, height: size }}
-      className={`shrink-0 select-none ${className}`}
-    />
-  )
-}
+import { useRef } from 'react'
+import { rise, stagger, viewport } from '../lib/motion'
 
 export function Reveal({
   children,
   className = '',
-  delay = 0,
   as = 'div',
 }: {
   children: ReactNode
   className?: string
-  delay?: number
-  as?: 'div' | 'section' | 'li' | 'header'
+  as?: 'div' | 'section' | 'li' | 'article' | 'header'
 }) {
   const Tag = motion[as]
   return (
-    <Tag
-      className={className}
-      variants={rise}
-      initial="initial"
-      whileInView="animate"
-      viewport={viewport}
-      transition={{ delay }}
-    >
+    <Tag className={className} variants={rise} initial="initial" whileInView="animate" viewport={viewport}>
       {children}
     </Tag>
   )
 }
 
-export function RevealGroup({ children, className = '' }: { children: ReactNode; className?: string }) {
+export function RevealList({
+  children,
+  className = '',
+  as = 'div',
+}: {
+  children: ReactNode
+  className?: string
+  as?: 'div' | 'ul' | 'ol'
+}) {
+  const Tag = motion[as]
   return (
-    <motion.div
-      className={className}
-      variants={stagger}
-      initial="initial"
-      whileInView="animate"
-      viewport={viewport}
-    >
+    <Tag className={className} variants={stagger} initial="initial" whileInView="animate" viewport={viewport}>
       {children}
-    </motion.div>
+    </Tag>
   )
 }
 
@@ -74,69 +54,54 @@ export function RevealItem({
   )
 }
 
-type ButtonProps = {
-  href: string
-  children: ReactNode
-  tone?: 'ink' | 'soft' | 'paper'
-  icon?: ReactNode
-  className?: string
-  external?: boolean
-}
-
-const buttonTones: Record<string, string> = {
-  ink: 'bg-action text-on-action',
-  soft: 'bg-well text-ink border border-rim',
-  paper: 'bg-card text-ink',
-}
-
-export function Button({ href, children, tone = 'ink', icon, className = '', external }: ButtonProps) {
+export function SectionHead({ n, id, title, lead }: { n: string; id: string; title: string; lead: string }) {
   return (
-    <motion.a
-      href={href}
-      target={external ? '_blank' : undefined}
-      rel={external ? 'noreferrer noopener' : undefined}
-      whileTap={{ scale: 0.97 }}
-      transition={spring.press}
-      className={`inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl px-7 text-[15.5px] font-bold ${buttonTones[tone]} ${className}`}
-    >
-      {children}
-      {icon}
-    </motion.a>
-  )
-}
-
-export function SectionHead({
-  title,
-  lead,
-  tone = 'ink',
-  align = 'left',
-}: {
-  title: string
-  lead: string
-  tone?: 'ink' | 'band'
-  align?: 'left' | 'center'
-}) {
-  const titleColor = tone === 'band' ? 'text-band-ink' : 'text-ink'
-  const leadColor = tone === 'band' ? 'text-band-soft' : 'text-ink-soft'
-  const alignment = align === 'center' ? 'text-center mx-auto' : ''
-  return (
-    <Reveal className={alignment}>
-      <h2 className={`max-w-[46rem] text-[clamp(1.875rem,4.4vw,3.125rem)] font-extrabold leading-[1.1] ${titleColor}`}>
-        {title}
-      </h2>
-      <p className={`mt-5 max-w-[38rem] text-[clamp(1rem,1.5vw,1.1875rem)] leading-relaxed ${leadColor}`}>{lead}</p>
+    <Reveal as="header" className="border-t border-rule-strong pt-6">
+      <div className="flex items-baseline gap-4">
+        <span className="label text-accent">{n}</span>
+        <h2 className="text-[clamp(1.5rem,3vw,2.125rem)]">
+          <a href={`#${id}`} className="group inline-flex items-baseline gap-2">
+            {title}
+            <span className="label text-ink-3 opacity-0 transition-opacity group-hover:opacity-100">#</span>
+          </a>
+        </h2>
+      </div>
+      <p className="measure mt-4 text-ink-2">{lead}</p>
     </Reveal>
   )
 }
 
-export function Chip({ children, tone = 'well' }: { children: ReactNode; tone?: 'well' | 'band' }) {
-  const styles =
-    tone === 'band'
-      ? 'bg-band-rim/40 text-band-soft'
-      : 'bg-well text-ink-soft'
+export function Shot({ src, caption }: { src: string; caption: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const reduced = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const shift = useTransform(scrollYProgress, [0, 1], ['-3%', '3%'])
+
   return (
-    <span className={`inline-flex items-center rounded-full px-3.5 py-1.5 text-[13px] font-semibold ${styles}`}>
-      {children}
-    </span>
+    <motion.figure className="m-0" variants={rise}>
+      <div ref={ref} className="overflow-hidden rounded-[14px] border border-rule bg-panel">
+        <div
+          className="relative aspect-[390/844] w-full overflow-hidden"
+          style={{
+            maskImage: 'linear-gradient(to bottom, #000 84%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, #000 84%, transparent 100%)',
+          }}
+        >
+          <motion.img
+            src={src}
+            alt={caption}
+            loading="lazy"
+            decoding="async"
+            style={reduced ? undefined : { y: shift }}
+            className="absolute inset-x-0 top-0 h-[106%] w-full object-cover object-top"
+          />
+        </div>
+      </div>
+      <figcaption className="mt-3 text-[14px] leading-snug text-ink-3">{caption}</figcaption>
+    </motion.figure>
   )
+}
+
+export function Tag({ children }: { children: ReactNode }) {
+  return <span className="mono rounded-[4px] border border-rule px-2 py-[3px] text-[12px] text-ink-2">{children}</span>
 }
