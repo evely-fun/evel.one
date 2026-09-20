@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/node_modules/@fontsource-variable/montserrat/index.css" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        width: 1200px;
+        height: 630px;
+        background: #f9f7f3;
+        font-family: 'Montserrat Variable', sans-serif;
+        color: #14161d;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        gap: 48px;
+        padding: 64px;
+        overflow: hidden;
+      }
+      .mark { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+      .mark span { color: #8f8e92; }
+      h1 {
+        margin-top: 26px;
+        font-size: 62px;
+        font-weight: 800;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+      }
+      p { margin-top: 24px; font-size: 22px; line-height: 1.45; color: #5c6070; font-weight: 500; }
+      .facts { margin-top: 36px; display: flex; gap: 36px; font-size: 19px; font-weight: 800; }
+      .facts span { color: #8f8e92; font-weight: 600; }
+      .panel {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 32px;
+        background: #1a84f7;
+        overflow: hidden;
+      }
+      .panel svg, .panel img { position: absolute; }
+      .panel svg { inset: 0; width: 100%; height: 100%; }
+      .lock { left: 50%; top: 50%; width: 48%; transform: translate(-50%, -50%); }
+      .key { right: 9%; top: 14%; width: 20%; }
+      .link { bottom: 12%; left: 8%; width: 21%; }
+      .spark { left: 13%; top: 11%; width: 15%; }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="mark">evel<span>.one</span></div>
+      <h1>Telegram Mini Apps под ключ</h1>
+      <p>Бэкенд на Python, фронтенд на TypeScript, деплой на сервер.</p>
+      <div class="facts">
+        <div>от 2 дней <span>срок</span></div>
+        <div>от $20 <span>проект</span></div>
+        <div>50% <span>предоплата</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <svg viewBox="0 0 400 400">
+        <ellipse cx="200" cy="205" rx="150" ry="96" fill="none" stroke="#fdf6e8" stroke-opacity="0.55" stroke-width="3" transform="rotate(-18 200 205)" />
+        <circle cx="330" cy="120" r="6" fill="#fdf6e8" fill-opacity="0.75" />
+        <circle cx="72" cy="268" r="8" fill="#fdf6e8" fill-opacity="0.6" />
+      </svg>
+      <img class="lock" src="/art/clay/lock.webp" />
+      <img class="key" src="/art/clay/key.webp" />
+      <img class="link" src="/art/clay/link.webp" />
+      <img class="spark" src="/art/clay/sparkles.webp" />
+    </div>
+  </body>
+</html>
