@@ -20,6 +20,9 @@ The page reads like a well set paper, at full desktop width rather than a narrow
 - **Colour.** Warm paper, warm near black ink, one accent (deep rust) on section numbers, the
   active contents entry, the reading progress bar and the add-on price lines.
 - **Rules, not boxes.** Hairlines separate things. No cards, no shadows, no gradients, no glass.
+- **No slop tells.** `.label` is sentence case, not tracked-out all caps. Only the seven document
+  sections carry numbers; items inside a section never get their own `01 02 03` counters. Chips are
+  hairline outlines, never filled pills.
 - **Icons.** Phosphor Icons, light weight, MIT, vendored as paths in `src/ui/icons.tsx`.
   Nothing comes from the Anteiku asset gallery.
 - **Figures.** Only real screenshots of shipped work, in `public/shots/`. `Shot` takes a `ratio`:
@@ -35,7 +38,7 @@ No em dashes, no exclamation marks, sentence case, no slang anywhere near money.
 Gender is never guessed. Russian is the default language and does not follow the browser.
 All strings live in `src/i18n/strings.ts`, Russian and English side by side.
 
-En dashes inside numeric ranges (`$200–500`) are correct typography and are allowed. The banned
+En dashes inside numeric ranges (`$20–70`) are correct typography and are allowed. The banned
 character is the em dash.
 
 ## Privacy
