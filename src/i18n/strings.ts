@@ -307,7 +307,7 @@ export const strings = {
       title: 'Условия',
       lead: 'Скучная часть, которую лучше прочитать до, а не после.',
       paymentsTitle: 'Чем можно платить',
-      paymentsNote: 'Если криптой неудобно, договоримся в личке и пропишем способ в договоре.',
+      paymentsNote: 'Если ничего из этого не подходит, договоримся в личке и пропишем способ в договоре.',
       items: [
         {
           title: '50% перед стартом',
@@ -666,7 +666,7 @@ export const strings = {
       title: 'Terms',
       lead: 'The boring part, better read before than after.',
       paymentsTitle: 'How you can pay',
-      paymentsNote: 'If crypto does not work for you, we agree on another way privately and write it into the contract.',
+      paymentsNote: 'If none of these work for you, we agree on another way privately and write it into the contract.',
       items: [
         {
           title: '50% before I start',
