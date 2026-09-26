@@ -98,4 +98,8 @@ Account → Cloudflare Pages → Edit, with the account itself included under Ac
 plus `CLOUDFLARE_ACCOUNT_ID`. A token that passes `/user/tokens/verify` but returns zero
 accounts from `/accounts` is missing that resource scope.
 
-The custom domain `evel.one` is not attached to the project yet.
+The site is live at `https://evel.one` and `https://www.evel.one`. The zone sits in the same
+Cloudflare account as the Pages project, on the `rene`/`serenity` nameservers, with one proxied
+CNAME each for `@` and `www` pointing at `evel-one.pages.dev`. Adding a custom domain through the
+API leaves it `pending` until DNS is in place: the Pages endpoint cannot write the record itself
+unless the token also carries Zone edit rights.
